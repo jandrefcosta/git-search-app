@@ -64,8 +64,9 @@ export default function UserDetailPage() {
     }
 
     function HandleClickNext() {
-        if (userDetail.public_repos > (pagination.page * pagination.per_page))
+        if (userDetail.public_repos > (pagination.page * pagination.per_page)) {
             setPagination({ ...pagination, page: pagination.page + 1 })
+        }
     }
 
     if (userDetail === undefined) {
@@ -78,80 +79,81 @@ export default function UserDetailPage() {
 
     return (
 
-        <div className="container mx-auto flex flex-wrap justify-start items-stretch min-h-screen sm:flex-col">
+        <div className="container">
             <div className="container-header">
-                <a href="/">Voltar</a>
+                <a href="/">Back</a>
             </div>
-            <div className="container mx-auto flex flex-wrap justify-center items-center flex-grow sm:flex-col lg:flex-row">
-                <div className="container-user-left">
-                    <img className="avatar-img" src={userDetail.avatar_url} alt="description" />
-                    <h4>{userDetail.name || "'Sem nome'"} ({username})</h4>
-                    <h5>Total de projetos criados: <span>{userDetail.public_repos}</span> projeto(s)</h5>
-                    <h6>Usuário criado em: <span>{moment(userDetail.created_at).format("DD/MM/YYYY")}</span></h6>
-                </div>
-                <div className="container-user-right">
-                    {userDetailRepos && (
-                        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                    <tr>
-                                        <th scope="col" className="px-6 py-3">
-                                            Projeto
-                                        </th>
-                                        <th scope="col" className="px-6 py-3">
-                                            Full Name
-                                        </th>
-                                        <th scope="col" className="px-6 py-3">
-                                            Ultima Atualização
-                                        </th>
-                                        <th scope="col" className="px-6 py-3">
-                                            URL
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {userDetailRepos.map(repo => {
-                                        return (
-                                            <tr className="" key={repo.node_id}>
-                                                <th scope="row" className="px-6 py-3">
-                                                    {repo.name}
-                                                </th>
-                                                <td className="px-6 py-4">
-                                                    {repo.full_name}
-                                                </td>
-                                                <td className="px-6 py-4">
-                                                    {moment(repo.updated_at).format("DD/MM/YYYY")}
-                                                </td>
-                                                <td className="px-6 py-4">
-                                                    <a href={repo.html_url} className="" target="_blank" rel="noreferrer">Link</a>
-                                                </td>
-                                            </tr>
-                                        )
-                                    })}
-                                </tbody>
-                            </table>
-                            <div className="pagination-controls">
-                                <label className="text-info">
-                                    {paginationDetail && `Mostrando ${paginationDetail.inicialItemPageNumber} ao ${paginationDetail.lastItemPageNumber} de ${paginationDetail.total}`}
-                                </label>
-                                <div className="controls">
-                                    <button onClick={HandleClickPrev}>
-                                        <svg aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                                        </svg>
-                                    </button>
-                                    <button onClick={HandleClickNext}>
-                                        <svg aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
-                                        </svg>
-                                    </button>
+            <div className="container_content">
+                <div className="container_content__box">
+                    <div className="container-user-left">
+                        <img className="avatar-img" src={userDetail.avatar_url} alt="description" />
+                        <h4>{userDetail.name || "'Unnamed'"} ({username})</h4>
+                        <h5>Total projects created: <span>{userDetail.public_repos}</span> project(s).</h5>
+                        <h6>User created in: <span>{moment(userDetail.created_at).format("DD/MM/YYYY")}.</span></h6>
+                    </div>
+                    <div className="container-user-right">
+                        {userDetailRepos && (
+                            <div >
+                                <table >
+                                    <thead >
+                                        <tr>
+                                            <th scope="col">
+                                                Project
+                                            </th>
+                                            <th scope="col">
+                                                Full Name
+                                            </th>
+                                            <th scope="col">
+                                                Last Update
+                                            </th>
+                                            <th scope="col" colSpan="2">
+                                                URL
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {userDetailRepos.map(repo => {
+                                            return (
+                                                <tr key={repo.node_id}>
+                                                    <td>
+                                                        {repo.name}
+                                                    </td>
+                                                    <td className="px-6 py-4">
+                                                        {repo.full_name}
+                                                    </td>
+                                                    <td className="px-6 py-4">
+                                                        {moment(repo.updated_at).format("DD/MM/YYYY")}
+                                                    </td>
+                                                    <td className="px-6 py-4">
+                                                        <a href={repo.html_url} className="link_repo" target="_blank" rel="noreferrer">Link</a>
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })}
+                                    </tbody>
+                                </table>
+                                <div className="pagination-controls">
+                                    <label className="text-info">
+                                        {paginationDetail && `Showing ${paginationDetail.inicialItemPageNumber} to ${paginationDetail.lastItemPageNumber} of ${paginationDetail.total}.`}
+                                    </label>
+                                    <div className="controls">
+                                        <button onClick={HandleClickPrev}>
+                                            <svg aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                                            </svg>
+                                        </button>
+                                        <button onClick={HandleClickNext}>
+                                            <svg aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )}
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
-
     )
 }

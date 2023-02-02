@@ -1,0 +1,32 @@
+.controls_pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+        cursor: pointer;
+        display: flex;
+        width: 70px;
+        justify-content: space-around;
+        align-items: center;
+
+        background: #514da3;
+        color: #fff;
+        border: none;
+        padding: 8px;
+        border-radius: 8px;
+
+        svg {
+            width: 20px;
+        }
+    }
+
+    .controls_pagination__details {
+        margin: 0 8px;
+        font-size: 14px;
+
+        span {
+            font-weight: 700;
+        }
+    }
+}

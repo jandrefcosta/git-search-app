@@ -11,43 +11,124 @@
     }
 }
 
-.container-user-left {
-    max-width: 50%;
-    .avatar-img {
-        width: 18rem;
-        height: 18rem;
-        border-radius: 100%;
-    }
+.container_content {
+    flex-direction: row;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
 
-    h4 {
-        font-size: 1.5rem;
-        font-weight: bold;
-    }
-
-    span {
-        font-weight: 700;
-    }
-}
-
-.container-user-right {
-    max-width: 50%;
-    padding: 25px;
-    .pagination-controls {
+    .container_content__box {
         display: flex;
-        justify-content: space-between;
-
-        .text-info {
-            padding: 4px;
-            font-size: 10px;
+        @media only screen and (max-width: 720px){
+            flex-direction: column;
         }
-        .controls{
-            button{
-                margin: 4px 8px;
+    }
+
+    .container-user-left {
+        max-width: 40%;
+        width: 100%;
+
+        * {
+            margin-bottom: 8px;
+        }
+
+        .avatar-img {
+            width: 18rem;
+            height: 18rem;
+            border-radius: 100%;
+        }
+
+        h4 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        span {
+            font-weight: 700;
+        }
+
+        @media only screen and (max-width: 720px){
+            max-width: 100%;
+            text-align: center;
+        }
+
+        
+    }
+
+    .container-user-right {
+        max-width: 60%;
+        width: 100%;
+        padding: 25px;
+
+        table {
+            thead {
+                tr {
+                    background-color: gray;
+                    color: #fff;
+                }
             }
-            svg {
-                width: 20px;
-                height: 20px;
+
+            tr:nth-child(even) {
+                background-color: #c2c2c2;
             }
+
+            th {
+                white-space: nowrap;
+                font-weight: bold;
+            }
+
+            th,
+            td {
+                text-align: left;
+                border: 1px solid #a2a2a2;
+                vertical-align: middle;
+                padding: 8px;
+            }
+        }
+
+        .link_repo {
+            color: inherit;
+            text-decoration: underline;
+        }
+
+        .pagination-controls {
+            display: flex;
+            justify-content: space-between;
+
+            .text-info {
+                padding: 4px;
+                font-size: 10px;
+            }
+
+            .controls {
+                display: flex;
+
+                button {
+                    cursor: pointer;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 100%;
+                    border: none;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    &:last-child {
+                        margin-left: 8px;
+                    }
+                }
+
+                svg {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+        @media only screen and (max-width: 720px){
+            margin-top: 32px;
+            max-width: 100%;
+            padding: 0;
         }
     }
 }
